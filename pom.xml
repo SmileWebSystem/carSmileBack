@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -29,16 +29,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.smile.clientWS</groupId>
+			<artifactId>fasecoldaClient</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 	</dependencies>
 
@@ -48,8 +54,41 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.cxf</groupId> -->
+<!-- 				<artifactId>cxf-codegen-plugin</artifactId> -->
+<!-- 				<version>3.1.0</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>generate-sources</id> -->
+<!-- 						<phase>generate-sources</phase> -->
+<!-- 						<configuration> -->
+<!-- 							<sourceRoot>src/main/java/</sourceRoot> -->
+<!-- 							<wsdlOptions> -->
+<!-- 								<wsdlOption> -->
+<!-- 									<wsdl>src/main/resources/wsdl/FasecoldaService_1.wsdl</wsdl> -->
+<!-- 									<wsdlLocation>wsdl/FasecoldaService_1.wsdl</wsdlLocation> -->
+<!-- 								</wsdlOption> -->
+<!-- 							</wsdlOptions> -->
+<!-- 						</configuration> -->
+<!-- 						<goals> -->
+<!-- 							<goal>wsdl2java</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>project.local</id>
+			<name>project</name>
+			<url>file:${project.basedir}/repo</url>
+		</repository>
+	</repositories>
 
 
 </project>

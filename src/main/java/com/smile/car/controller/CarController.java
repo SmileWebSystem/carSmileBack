@@ -28,10 +28,15 @@ public class CarController {
 	private ICarService carService;
 	
 	@GetMapping("/health")
-    public ResponseEntity healthCheck() {
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity<String> healthCheck() {
+        return new ResponseEntity<String>("health OK",HttpStatus.OK);
     }
 	
+	/**
+	 * Realiza la consulta de la placa
+	 * @param placa
+	 * @return
+	 */
 	@GetMapping("/estudio")
 	public ResponseEntity<RespuestaDto> carStudy(String placa) {
 		return new ResponseEntity<RespuestaDto>(carService.analizarPlaca(placa), HttpStatus.OK);

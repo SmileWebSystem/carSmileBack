@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6hudson-86  svn-revision#12773.--><xs:schema version="1.0" targetNamespace="http://www.segurosbolivar.com/simon/fasecolda/1.0" xmlns:tns="http://www.segurosbolivar.com/simon/fasecolda/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://services.segurosbolivar.com/simon/common/schema/1.0">
+  <xs:import schemaLocation="FasecoldaService_1.xsd" namespace="http://services.segurosbolivar.com/simon/common/schema/1.0"/>
+  <xs:element name="ConsultaCexperRequest" type="tns:ConsultaCexperReqType"/>
+  <xs:element name="ConsultaCexperResponse" type="tns:ConsultaCexperRespType"/>
+  <xs:element name="ConsultaSisaRequest" type="tns:ConsultaSisaRequestType"/>
+  <xs:element name="ConsultaSisaResponse" type="tns:ConsultaSisaRespType"/>
+  <xs:complexType name="ConsultaCexperReqType">
+    <xs:complexContent>
+      <xs:extension base="Q1:BaseReqType">
+        <xs:sequence>
+          <xs:element name="placa" type="xs:string" maxOccurs="1" minOccurs="1"/>
+          <xs:element name="tipoDocumento" type="xs:string" maxOccurs="1" minOccurs="1"/>
+          <xs:element name="numeroDocumento" type="xs:string" maxOccurs="1" minOccurs="1"/>
+          <xs:element name="tipo" type="xs:int" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="uso" type="xs:int" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConsultaCexperRespType">
+    <xs:sequence>
+      <xs:element name="DataHeader" type="Q1:DataHeaderResponseType"/>
+      <xs:element name="Data" type="tns:CexperOutType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CexperOutType">
+    <xs:sequence>
+      <xs:element name="historicoPolizasCexper" type="tns:HistoricoPolizaCexperOutType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="historicoSiniestrosCexper" type="tns:HistoricoSiniestroCexperOutType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="bonificacionTecnica" type="tns:bonificacionTecnicaOutType" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsultaSisaRequestType">
+    <xs:complexContent>
+      <xs:extension base="Q1:BaseReqType">
+        <xs:sequence>
+          <xs:element name="placa" type="xs:string" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="motor" type="xs:string" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="chasis" type="xs:string" maxOccurs="1" minOccurs="0"/>
+          <xs:element name="uso" type="xs:long" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConsultaSisaRespType">
+    <xs:sequence>
+      <xs:element name="DataHeader" type="Q1:DataHeaderResponseType"/>
+      <xs:element name="Data" type="tns:SisaOutType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SisaOutType">
+    <xs:sequence>
+      <xs:element name="historicoPolizasSisa" type="tns:HistoricoPolizaSisaOutType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="historicoSiniestrosSisa" type="tns:HistoricoSiniestroSisaOutType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="codigoWMISisa" type="tns:InformacionCodigosWMISisaOutType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="guiaSisa" type="tns:InformacionGuiasSisaOutType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="SIMITSisa" type="tns:ConsulExternaSIMITSisaOutType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="analisisContinuidades" type="tns:ContinuidadesSisaOutType" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InformacionCodigosWMISisaOutType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoWMI" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreFabricante" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Direccion1Fabricante" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Direccion2Fabricante" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaCreacion" type="xs:dateTime"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaModificacion" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Pais" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsulExternaSIMITSisaOutType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Secretaria" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaComparendo" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Numero" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Resolucion" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaResolucion" nillable="true" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoResolucion" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Nombre" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Estado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorAdicional" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Valor" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoInfraccion" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorInfraccion" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Polca" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InformacionGuiasSisaOutType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Marca" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Clase" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Tipo" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Modelo" type="xs:short"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorActual" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorInicio" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="FechaGuia" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoGuia" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Guia" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HistoricoPolizaSisaOutType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodigoCompania" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreCompania" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroPoliza" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Orden" type="xs:long"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Placa" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Motor" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Chasis" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaVigencia" type="xs:dateTime"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Vigente" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoGuia" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Marca" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Clase" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Tipo" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Modelo" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Servicio" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoDocumentoAsegurado" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroDocumento" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asegurado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorAsegurado" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PTD" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PPD" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PH" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PPH" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="RC" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoCruce" type="xs:string"/>
+      <xs:element name="TipoDocumentoTomador" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NumeroDocumentoTomador" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NombreTomador" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="TipoDocumentoBeneficiario" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NombreBeneficiario" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NumeroDocumentoBeneficiario" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HistoricoSiniestroCexperOutType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodigoCompania" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreCompania" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroSiniestro" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroPoliza" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Orden" type="xs:long"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Placa" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Motor" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Chasis" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaSiniestro" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoGuia" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Marca" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Clase" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Tipo" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Modelo" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoDocumentoAsegurado" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroDocumento" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asegurado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorAsegurado" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoCruce" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Amparos" type="tns:AmparoCexperType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AmparoCexperType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodigoCompania" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroSiniestro" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaSiniestro" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Placa" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Estado" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreAmparado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorReclamaAmparo" type="xs:long"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorPagadoAmparo" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HistoricoPolizaCexperOutType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodigoCompania" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreCompania" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroPoliza" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Orden" type="xs:long"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Placa" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Motor" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Chasis" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaVigencia" type="xs:dateTime"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Vigente" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoGuia" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Marca" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Clase" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Tipo" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Modelo" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Servicio" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoDocumentoAsegurado" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroDocumento" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asegurado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorAsegurado" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PTD" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PPD" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PH" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PPH" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="RC" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoCruce" type="xs:string"/>
+      <xs:element name="Color" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ClasePoliza" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HistoricoSiniestroSisaOutType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodigoCompania" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreCompania" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroSiniestro" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroPoliza" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Orden" type="xs:long"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Placa" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Motor" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Chasis" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaSiniestro" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodigoGuia" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Marca" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Clase" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Tipo" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Modelo" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoDocumentoAsegurado" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroDocumento" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asegurado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorAsegurado" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TipoCruce" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Amparos" type="tns:AmparoSisaType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AmparoSisaType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodigoCompania" type="xs:short"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumeroSiniestro" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaSiniestro" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Placa" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Estado" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NombreAmparado" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorReclamaAmparo" type="xs:long"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValorPagadoAmparo" type="xs:long"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="FechaAviso" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContinuidadesSisaOutType">
+    <xs:sequence>
+      <xs:element name="contiCambioCompania" type="xs:boolean" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="msgReglaCambioCompania" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="contiCambioAsegurado" type="xs:boolean" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="msgReglaCambioAsegurado" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bonificacionTecnicaOutType">
+    <xs:sequence>
+      <xs:element name="DescuentoExpAsegurado" type="xs:long" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="DescuentoSiniestrosAseg" type="xs:long" maxOccurs="1" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConsultaSIMITRequest" type="tns:ConsultaSIMITReqType"/>
+  <xs:complexType name="ConsultaSIMITReqType">
+    <xs:complexContent>
+      <xs:extension base="Q1:BaseReqType">
+        <xs:sequence>
+          <xs:element name="tipoDocumento" type="xs:string"/>
+          <xs:element name="numeroDocumento" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ConsultaSIMITResponse" type="tns:ConsultaSIMITRespType"/>
+  <xs:complexType name="ConsultaSIMITRespType">
+    <xs:sequence>
+      <xs:element name="dataHeader" type="Q1:DataHeaderResponseType"/>
+      <xs:element name="data" type="tns:SIMITOutType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SIMITOutType">
+    <xs:sequence>
+      <xs:element name="comparendo" type="tns:ConsulExternaSIMITSisaOutType" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

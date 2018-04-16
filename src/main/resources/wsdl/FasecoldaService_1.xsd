@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6hudson-86  svn-revision#12773.--><xs:schema version="1.0" targetNamespace="http://services.segurosbolivar.com/simon/common/schema/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://services.segurosbolivar.com/simon/common/schema/1.0">
+  <xs:element name="PolizasExceptionFault" type="Q1:PolizasFaultType"/>
+  <xs:simpleType name="StringRequiredType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PolizasFaultType">
+    <xs:sequence>
+      <xs:element name="exceptionType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Nombre de la clase que corresponde a la
+    					excepción raíz</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="exceptionMessage" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Mensaje de la excepción raíz</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="exceptionTrace" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Stack trace de la excepción</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaseReqType">
+    <xs:sequence>
+      <xs:element name="DataHeader" type="Q1:DataHeaderRequestType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DataHeaderRequestType">
+    <xs:sequence>
+      <xs:element name="modulo" type="Q1:StringRequiredType"/>
+      <xs:element name="proceso" type="xs:long"/>
+      <xs:element name="subProceso" type="xs:long"/>
+      <xs:element name="codCia" type="xs:int"/>
+      <xs:element name="codSecc" type="xs:int"/>
+      <xs:element name="codProducto" type="xs:int"/>
+      <xs:element name="subProducto" type="xs:int" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="codUrs" type="Q1:StringRequiredType"/>
+      <xs:element name="entidadColocadora" type="xs:int"/>
+      <xs:element name="canal" type="xs:int" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="sistemaOrigen" type="xs:long"/>
+      <xs:element name="pais" type="xs:long"/>
+      <xs:element name="direccionIp" type="Q1:StringRequiredType"/>
+      <xs:element name="versionServicio" default="1.0" type="Q1:StringRequiredType"/>
+      <xs:element name="info1" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="info2" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="info3" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="info4" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="info5" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DataHeaderResponseType">
+    <xs:sequence>
+      <xs:element name="codRespuesta" type="xs:int"/>
+      <xs:element name="errores" type="Q1:BusinessErrorType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessErrorType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="descripcion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="tipo" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="msgErrorOrcl" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="msgErrorOrcl1" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TomadorType">
+    <xs:sequence>
+      <xs:element name="tipoDocumento" type="xs:string"/>
+      <xs:element name="numeroDocumento" type="xs:long"/>
+      <xs:element name="nombres" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="apellidos" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="telefono" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="direccion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="celular" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="genero" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="fechaNacimiento" type="xs:date" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ciudad" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PreguntaType">
+    <xs:sequence>
+      <xs:element name="idPregunta" type="xs:long"/>
+      <xs:element name="codCia" type="xs:long"/>
+      <xs:element name="codSecc" type="xs:long"/>
+      <xs:element name="codProducto" type="xs:long"/>
+      <xs:element name="pregunta" type="xs:string"/>
+      <xs:element name="tipoDato" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="longMax" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="genero" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="listaAsociada" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="datoVariableAsoc" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="orden" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="obligatorio" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="vlrDefault" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="reqDescripcion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="descripcion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="idGrupo" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="nombreGrupo" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ordenGrupo" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="esNivelCero" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="pregRegla" type="Q1:ReglaDeclaracionAseguType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="info1" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="info2" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="info3" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReglaDeclaracionAseguType">
+    <xs:sequence>
+      <xs:element name="idMapeo" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="nombreRegla" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="valorInicio" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="valorFinal" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="valores" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="operacions" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="prioridad" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="idPredecaseExitoso" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="idPredecaseFalido" type="xs:long" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="mensaje" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CatalogoDatosReqType">
+    <xs:sequence>
+      <xs:element name="DataHeader" type="Q1:DataHeaderRequestType"/>
+      <xs:element name="Data" type="Q1:CatalogoSolicitudType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CatalogoDatosRespType">
+    <xs:sequence>
+      <xs:element name="DataHeader" type="Q1:DataHeaderResponseType"/>
+      <xs:element name="Data" type="Q1:CatalogoType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CatalogoSolicitudType">
+    <xs:sequence>
+      <xs:element name="nombre" type="Q1:StringRequiredType"/>
+      <xs:element name="param" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CatalogoType">
+    <xs:sequence>
+      <xs:element name="catalogo" type="xs:string"/>
+      <xs:element name="catalogoDato" type="Q1:CatalogoDatoType" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CatalogoDatoType">
+    <xs:sequence>
+      <xs:element name="codigo" type="xs:string"/>
+      <xs:element name="valor" type="xs:string"/>
+      <xs:element name="datosAdicionales" type="xs:string" minOccurs="0"/>
+      <xs:element name="imagen" type="xs:base64Binary" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LookupType">
+    <xs:sequence>
+      <xs:element name="codigo" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="valor" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DominioVOType">
+    <xs:sequence>
+      <xs:element name="codigo" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="valor" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="datosAdicionales" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenciaEspacialType">
+    <xs:sequence>
+      <xs:element name="idObjeto" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ultimoIdObjeto" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CamposType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="tipo" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="alias" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="tamano" type="xs:int" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GeometriaType">
+    <xs:sequence>
+      <xs:element name="x" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="y" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AgentePolizaType">
+    <xs:sequence>
+      <xs:element name="numSecuPol" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="numEnd" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="codAgente" type="Q1:LookupType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="agencia" type="Q1:LookupType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="formaActuacion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="codConvenio" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="porcentajeParticipacion" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="lider" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="porcPactado" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="nroDocumento" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="rol" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="codCobertura" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="codRiesgo" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="porcentajeComision" type="xs:decimal" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

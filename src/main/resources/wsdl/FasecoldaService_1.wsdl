@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6hudson-86  svn-revision#12773.--><definitions name="FasecoldaService" targetNamespace="http://www.segurosbolivar.com/simon/fasecolda/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.segurosbolivar.com/simon/fasecolda/1.0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://services.segurosbolivar.com/simon/common/schema/1.0">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.segurosbolivar.com/simon/fasecolda/1.0" schemaLocation="FasecoldaService.xsd"/>
+      <xsd:import namespace="http://services.segurosbolivar.com/simon/common/schema/1.0" schemaLocation="FasecoldaService_1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="consultaCexperRequest">
+    <part name="CexperRequest" element="tns:ConsultaCexperRequest"/>
+  </message>
+  <message name="consultaCexperResponse">
+    <part name="CexperResponse" element="tns:ConsultaCexperResponse"/>
+  </message>
+  <message name="consultaSisaRequest">
+    <part name="SisaRequest" element="tns:ConsultaSisaRequest"/>
+  </message>
+  <message name="consultaSisaResponse">
+    <part name="SisaResponse" element="tns:ConsultaSisaResponse"/>
+  </message>
+  <message name="consultaSIMITRequest">
+    <part name="ConsultaSIMITRequest" element="tns:ConsultaSIMITRequest"/>
+  </message>
+  <message name="consultaSIMITResponse">
+    <part name="ConsultaSIMITResponse" element="tns:ConsultaSIMITResponse"/>
+  </message>
+  <message name="polizasExceptionFault">
+    <part name="PolizasExceptionFault" element="xsd1:PolizasExceptionFault"/>
+  </message>
+  <portType name="FasecoldaService">
+    <operation name="consultaCexper">
+      <input message="tns:consultaCexperRequest"/>
+      <output message="tns:consultaCexperResponse"/>
+      <fault name="fault" message="tns:polizasExceptionFault"/>
+    </operation>
+    <operation name="consultaSisa">
+      <input message="tns:consultaSisaRequest"/>
+      <output message="tns:consultaSisaResponse"/>
+      <fault name="fault" message="tns:polizasExceptionFault"/>
+    </operation>
+    <operation name="consultarSIMIT">
+      <input message="tns:consultaSIMITRequest"/>
+      <output message="tns:consultaSIMITResponse"/>
+      <fault name="fault" message="tns:polizasExceptionFault"/>
+    </operation>
+  </portType>
+  <binding name="FasecoldaServicePortBinding" type="tns:FasecoldaService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaCexper">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </fault>
+    </operation>
+    <operation name="consultaSisa">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </fault>
+    </operation>
+    <operation name="consultarSIMIT">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="FasecoldaService">
+    <port binding="tns:FasecoldaServicePortBinding" name="FasecoldaServicePort">
+      <soap:address location="https://ambientepruebas.segurosbolivar.com/SimonWS/FasecoldaService"/>
+    </port>
+  </service>
+</definitions>
